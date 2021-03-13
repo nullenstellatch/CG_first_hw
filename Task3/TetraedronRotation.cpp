@@ -33,7 +33,7 @@ int main( void )
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Open a window and create its OpenGL context
-    window = glfwCreateWindow( 1024, 768, "Tutorial 04 - Colored Cube", NULL, NULL);
+    window = glfwCreateWindow( 1024, 768, "Thetraedra", NULL, NULL);
     if( window == NULL ){
         fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
         getchar();
@@ -66,29 +66,37 @@ int main( void )
 
 
     const GLfloat g_vertex_buffer_data[] = {
-        0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        0.5f,  -0.5f,  0.5f,
+        1.f, 0.f, 0.f,
+        0.f, 1.f, 0.f,
+        0.f, 0.f, 1.f,
 
-        0.5f,  0.5f,  0.5f,
-        0.5f,  -0.5f,  0.5f,
-        0.5f,  0.5f,  -0.5f,
+        -1.f, 0.f, 0.f,
+        0.f, 1.f, 0.f,
+        0.f, 0.f, 1.f,
 
-        0.5f,  0.5f,  0.5f,
-        -0.5f,  0.5f,  0.5f,
-        0.5f,  0.5f,  -0.5f,
+        1.f, 0.f, 0.f,
+        0.f, -1.f, 0.f,
+        0.f, 0.f, 1.f,
 
-        -0.5f,  -0.5f,  -0.5f,
-        -0.5f,  0.5f,  0.5f,
-        0.5f,  -0.5f,  0.5f,
+        1.f, 0.f, 0.f,
+        0.f, 1.f, 0.f,
+        0.f, 0.f, -1.f,
 
-        -0.5f,  -0.5f,  -0.5f,
-        0.5f,  -0.5f,  0.5f,
-        0.5f,  0.5f,  -0.5f,
+        -1.f, 0.f, 0.f,
+        0.f, -1.f, 0.f,
+        0.f, 0.f, 1.f,
 
-        -0.5f,  -0.5f,  -0.5f,
-        -0.5f,  0.5f,  0.5f,
-        0.5f,  0.5f,  -0.5f,
+        -1.f, 0.f, 0.f,
+        0.f, 1.f, 0.f,
+        0.f, 0.f, -1.f,
+
+        1.f, 0.f, 0.f,
+        0.f, -1.f, 0.f,
+        0.f, 0.f, -1.f,
+
+        -1.f, 0.f, 0.f,
+        0.f, -1.f, 0.f,
+        0.f, 0.f, -1.f,
     };
 
     GLuint vertexbuffer;
@@ -99,29 +107,37 @@ int main( void )
 
     // One color for each vertex. They were generated randomly.
     static const GLfloat g_color_buffer_data[] = {
-        0.5f,  0.5f,  0.5f,
-        0.0f,  0.0f,  1.0f,
-        0.5f,  0.0f,  0.5f,
+        1.f, 0.f, 0.f,
+        0.f, 1.f, 0.f,
+        0.f, 0.f, 1.f,
 
-        0.5f,  0.5f,  0.5f,
-        0.5f,  0.0f,  0.5f,
-        0.5f,  0.5f,  0.0f,
+        0.f, 0.5f, 0.5f,
+        0.f, 1.f, 0.f,
+        0.f, 0.f, 1.f,
 
-        0.5f,  0.5f,  0.5f,
-        0.0f,  0.0f,  1.0f,
-        0.5f,  0.5f,  0.0f,
+        1.f, 0.f, 0.f,
+        0.5f, 0.f, 0.5f,
+        0.f, 0.f, 1.f,
 
-        1.0f,  0.0f,  0.0f,
-        0.0f,  0.0f,  1.0f,
-        0.5f,  0.0f,  0.5f,
+        1.f, 0.f, 0.f,
+        0.f, 1.f, 0.f,
+        0.5f, 0.5f, 0.f,
 
-        1.0f,  0.0f,  0.0f,
-        0.5f,  0.0f,  0.5f,
-        0.5f,  0.5f,  0.0f,
+        0.f, 0.5f, 0.5f,
+        0.5f, 0.f, 0.5f,
+        0.f, 0.f, 1.f,
 
-        1.0f,  0.0f,  0.0f,
-        0.0f,  0.0f,  1.0f,
-        0.5f,  0.5f,  0.0f,
+        0.f, 0.5f, 0.5f,
+        0.f, 1.f, 0.f,
+        0.5f, 0.5f, 0.f,
+
+        1.f, 0.f, 0.f,
+        0.5f, 0.f, 0.5f,
+        0.5f, 0.5f, 0.f,
+
+        0.f, 0.5f, 0.5f,
+        0.5f, 0.f, 0.5f,
+        0.5f, 0.5f, 0.f,
     };
 
 
@@ -163,7 +179,7 @@ int main( void )
         glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0 );
 
         glUseProgram(programID);
-        glDrawArrays(GL_TRIANGLES, 0, 18);
+        glDrawArrays(GL_TRIANGLES, 0, 24);
 
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
